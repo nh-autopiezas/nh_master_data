@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	<record model="ir.ui.view" id="hr_contract_nh_search_view">
+	    <field name="name">hr.contract.nh.search.inherit</field>
+	    <field name="model">hr.contract</field>
+	    <field name="inherit_id" ref="hr_contract.hr_contract_view_search"/>
+	    <field name="arch" type="xml">
+	        <data>
+	             <xpath expr="//filter[@string='Employee']" position="after">
+                        <filter string='En Prueba' icon="terp-mrp" domain="[]" context="{'group_by' : 'periodo_prueba'}"/>
+	             </xpath>
+		</data>
+	     </field>
+	</record>
+
+     </data>
+</openerp>

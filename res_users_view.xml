@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	<record model="ir.ui.view" id="res_users_form_nh_view">
+	    <field name="name">res.users.nh.form.inherit</field>
+	    <field name="model">res.users</field>
+	    <field name="inherit_id" ref="base.view_users_form"/>
+	    <field name="arch" type="xml">
+	        <data>
+			<notebook>
+				<page string="Nuevo Horizonte">
+				   <separator string="Atributos Generales" />
+				   <group>
+					   <field name="nh_code" />
+				   </group>
+				</page>
+			</notebook>
+		</data>
+	     </field>
+	</record>
+     </data>
+</openerp>

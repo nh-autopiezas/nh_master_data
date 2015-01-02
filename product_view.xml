@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+	<!-- CATEGORIAS -->
+        <record id="marcas_tree_view" model="ir.ui.view">
+            <field name="name">product.marca.treeview</field>
+            <field name="model">product.marca</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Marcas" editable="bottom">
+                        <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="marcas_view" model="ir.ui.view">
+            <field name="name">product.marca.view</field>
+            <field name="model">product.marca</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Marcas">
+                    <group col="6" colspan="4">
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_marcas_form" model="ir.actions.act_window">
+            <field name="name">Marcas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.marca</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="marcas_tree_view"/>
+        </record>
+
+        <menuitem id="menu_product_marca_id" name="Marca" parent="purchase.menu_procurement_management_product" />
+
+	<!-- Product Form -->
+
+	<record model="ir.ui.view" id="product_nh_form_view">
+	    <field name="name">product.nh.form.inherit</field>
+	    <field name="model">product.product</field>
+	    <field name="inherit_id" ref="product.product_normal_form_view"/>
+	    <field name="arch" type="xml">
+	        <data>
+			<notebook>
+				<page string="Nuevo Horizonte">
+				   <separator string="Atributos Generales" />
+				   <group>
+					   <field name="supplier_id" />
+					   <field name="nh_code" />
+					   <field name="nh_supplier_code" />
+					   <field name="marca_id" />
+					   <field name="modelo_id" />
+					   <field name="subrubro_id" />
+				   </group>
+				</page>
+			</notebook>
+		</data>
+	     </field>
+	</record>
+
+	<record model="ir.ui.view" id="product_nh_tree_view">
+	    <field name="name">product.nh.tree.inherit</field>
+	    <field name="model">product.product</field>
+	    <field name="inherit_id" ref="product.product_product_tree_view"/>
+	    <field name="arch" type="xml">
+	        <data>
+		   <field name="name" position="after" >
+			   <field name="subrubro_id" />
+			</field>
+		</data>
+	     </field>
+	</record>
+
+        <record id="subrubro_tree_view" model="ir.ui.view">
+            <field name="name">product.subrubro.view</field>
+            <field name="model">product.subrubro</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Sub-Rubros" editable="bottom">
+                        <field name="name"/>
+                        <field name="porc_costo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="subrubro_view" model="ir.ui.view">
+            <field name="name">product.subrubro.form.view</field>
+            <field name="model">product.subrubro</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Sub-Rubros">
+                    <group col="6" colspan="4">
+                        <field name="name"/>
+                        <field name="porc_costo"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_subrubros_form" model="ir.actions.act_window">
+            <field name="name">Sub-Rubros</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.subrubro</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="subrubro_tree_view"/>
+        </record>
+
+
+        <menuitem id="product_menu_subrubro" name="Sub-Rubros" parent="product.prod_config_main" sequence="50"
+			action="action_subrubros_form" />
+
+
+     </data>
+</openerp>
