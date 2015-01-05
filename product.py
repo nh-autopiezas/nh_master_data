@@ -52,14 +52,15 @@ class product_product(osv.osv):
 	
 	def name_get(self, cr, user, ids, context=None):
 		result = super(product_product,self).name_get(cr,user,ids,context)
-		product = self.browse(cr,user,ids)
+		products = self.browse(cr,user,ids)
 		cadena = result[0][1]
-		if product.subrubro_id.name:
-			subrubro = product.subrubro_id.name
-		else:
-			subrubro = 'N/A'
-		product_name = subrubro.strip() + ' / ' + cadena
-		result = [(result[0][0],product_name)]
+		for product in products:
+			if product.subrubro_id.name:
+				subrubro = product.subrubro_id.name
+			else:
+				subrubro = 'N/A'
+			product_name = subrubro.strip() + ' / ' + cadena
+			result.append((product.id,product_name))
 		return result
 	
 
